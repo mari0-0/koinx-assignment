@@ -1,6 +1,7 @@
 "use client";
 import ScrollArea from "@/components/misc/ScrollArea";
 import { getTrendingCoins } from "@/lib/utils";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 function CryptoCard({ coin }) {
@@ -8,32 +9,37 @@ function CryptoCard({ coin }) {
   const price = coin.data.price.toFixed(9);
   return (
     <div className="min-w-[240px] p-4 bg-white rounded-xl border border-gray-200">
-      <div className="flex items-center gap-2 mb-3">
-        <img
-          src={coin.thumb}
-          width={32}
-          height={32}
-          alt={coin.name}
-          className="rounded-full"
-        />
-        <span className="font-medium">{coin.symbol}</span>
-        <span
-          className={`text-sm ${
-            change >= 0 ? "text-green-600" : "text-red-600"
-          }`}
-        >
-          {change >= 0 ? "+" : ""}
-          {change}%
-        </span>
-      </div>
+      <Link href={coin.name}>
+        <div className="flex items-center gap-2 mb-3">
+          <img
+            src={coin.thumb}
+            width={32}
+            height={32}
+            alt={coin.name}
+            className="rounded-full"
+          />
+          <span className="font-medium">{coin.symbol}</span>
+          <span
+            className={`text-sm ${
+              change >= 0 ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {change >= 0 ? "+" : ""}
+            {change}%
+          </span>
+        </div>
+      </Link>
+
       <div className="text-xl font-semibold mb-3">${price}</div>
-      <div className="h-[60px] w-full bg-gray-50">
-        <img
-          src={coin.data.sparkline}
-          alt={coin.name}
-          className="w-full h-full"
-        />
-      </div>
+      <Link href={coin.name}>
+        <div className="h-[60px] w-full bg-gray-50">
+          <img
+            src={coin.data.sparkline}
+            alt={coin.name}
+            className="w-full h-full"
+          />
+        </div>
+      </Link>
     </div>
   );
 }

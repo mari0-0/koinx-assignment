@@ -1,8 +1,7 @@
 import { getTrendingCoins } from "@/lib/utils";
 import { Triangle } from "lucide-react";
+import Link from "next/link";
 import React from "react";
-
-
 
 const TrendingCoins = async () => {
   let trendingCoins = await getTrendingCoins();
@@ -18,18 +17,19 @@ const TrendingCoins = async () => {
           const isBearish = changePercentage < 0;
           return (
             <div key={i} className="flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <img
-                  src={coin.item.thumb}
-                  alt="btc"
-                  className="w-8 h-8 rounded-full"
-                />
-                <h3 className="text-sm font-semibold">{coin.item.name}</h3>
-                <h4 className="text-sm text-neutral-600 font-semibold truncate">
-                  ({coin.item.symbol})
-                </h4>
-              </div>
-
+              <Link href={coin.item.name}>
+                <div className="flex items-center gap-1 md:gap-2">
+                  <img
+                    src={coin.item.thumb}
+                    alt="btc"
+                    className="w-8 h-8 rounded-full"
+                  />
+                  <h3 className="text-sm font-semibold">{coin.item.name}</h3>
+                  <h4 className="text-sm text-neutral-600 font-semibold truncate">
+                    ({coin.item.symbol})
+                  </h4>
+                </div>
+              </Link>
               <div
                 className={`ml-4 px-2 py-1 rounded-lg text-sm flex items-center gap-2  ${
                   isBearish

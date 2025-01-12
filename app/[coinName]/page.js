@@ -7,9 +7,9 @@ import Navbar from "@/components/navbar/Navbar";
 import { getDetailedCoinData } from "@/lib/utils";
 
 export default async function Home({ params }) {
-  const { coinName } = await params;
+  let { coinName } = await params;
+  coinName = coinName.toLowerCase()
   const coinData = await getDetailedCoinData(coinName);
-  console.log(coinData);
 
   return (
     <>

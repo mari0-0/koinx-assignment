@@ -10,7 +10,7 @@ const AdvancedRealTimeChart = dynamic(
   }
 );
 
-const Chart = ({coinSymbol}) => {
+const Chart = ({ coinSymbol }) => {
   const [isMobileView, setIsMobileView] = useState(false);
 
   useEffect(() => {
